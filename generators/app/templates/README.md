@@ -2,21 +2,30 @@
 
 <%= props.description %>
 
-## Build and serve
+## Install
 
-Component source files are located inside the `src` folder. Run `gulp` to build and serve the component demo:
+Install the component using [Bower](http://bower.io/):
 
-    cd <component-path> && gulp
+```bash
+$ bower install <%= props.name %> --save
+```
 
-### Code coverage through Web Component Tester
+## Usage
 
-You need [web-component-tester](https://github.com/Polymer/web-component-tester) installed globally:
+Import Web Components polyfill:
 
-    npm install -g web-component-tester
+```js
+<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+```
 
-Then, you can run your tests on the specified local browsers (Chrome by default) in `wct.conf.js`:
+Import Custom Element:
 
-    cd <component-path> && wct
+```html
+<link rel="import" href="bower_components/<%= props.name %>/<%= props.name %>.html"> 
+```
 
-Code coverage is done with [Istanbul](https://github.com/gotwarlost/istanbul). By default, the coverage thresholds for statements, branches, functions and lines are set to 70%. You can change this thresholds in `wct.conf.js`.
+Use it!:
 
+```html
+<<%= props.name %>></<%= props.name %>>
+```
