@@ -2,7 +2,7 @@
   "name": "generator-polymer-web-component",
   "version": "0.0.0",
   "description": "Polymer Web Component with build process through Gulp",
-  "homepage": "",
+  "homepage": "https://github.com/kcmr/generator-polymer-web-component",
   "author": "Kus Cámara",
   "files": [
     "app"
