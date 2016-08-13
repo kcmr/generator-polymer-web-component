@@ -18,6 +18,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "lodash-addons": "^0.3.1",
+    "validate-element-name": "^2.1.1",
     "yeoman-generator": "^0.23.0",
     "yosay": "^1.0.0"
   },

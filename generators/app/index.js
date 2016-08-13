@@ -5,10 +5,25 @@ var yosay = require('yosay');
 var path = require('path');
 var mkdirp = require('mkdirp');
 var _ = require('lodash-addons');
+var elementNameValidator = require('validate-element-name');
 
 module.exports = yeoman.Base.extend({
   prompting: function() {
     var done = this.async();
+
+    var nameValidator = function(str) {
+      var result = elementNameValidator(str);
+
+      if (!result.isValid) {
+        this.emit('error', new Error(chalk.red(result.message)));
+      }
+
+      if (result.message) {
+        this.log(chalk.yellow('\n' + result.message));
+      }
+
+      return true;
+    }.bind(this);
 
     var prompts = [{
       type: 'input',
@@ -16,7 +31,7 @@ module.exports = yeoman.Base.extend({
       required: true,
       message: 'Component\'s name',
       default: _.slugify(this.appname),
-      validate: function(str) { return /^([a-z])(?!.*[<>])(?=.*-).+$/.test(str); }
+      validate: nameValidator
     }, {
       type: 'input',
       name: 'description',
