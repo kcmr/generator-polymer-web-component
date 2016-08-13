@@ -1,0 +1,31 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="<%= props.name %>-styles.html">
+
+<!--
+<%= props.description %>
+
+Example:
+```html
+<<%= props.name %>>
+  <h2>Hello <%= props.name %></h2>
+</<%= props.name %>>
+```
+
+## Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+:-- | :-- | :--
+--<%= props.name %>-property | Description | Default value
+
+@demo demo/index.html
+-->
+
+<dom-module id="<%= props.name %>">
+  <template>
+    <style include="<%= props.name %>-styles <%= props.name %>-shared-styles"></style>
+    <content></content>
+  </template>
+  <script src="<%= props.name %>.js" inline></script>
+</dom-module>
