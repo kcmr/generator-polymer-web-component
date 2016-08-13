@@ -18,7 +18,8 @@ module.exports = yeoman.Base.extend({
     }, {
       type: 'input',
       name: 'description',
-      message: 'Component\'s short description'
+      message: 'Component\'s short description',
+      default: 'An element providing a solution to no problem in particular.'
     }];
 
     return this.prompt(prompts).then(function (props) {
