@@ -86,5 +86,9 @@ module.exports = yeoman.Base.extend({
     this.installDependencies({
       npm: false
     });
+  },
+
+  end: function() {
+    this.log(chalk.cyan('\nAll done!.\nRun gulp inside ' + this.props.name + ' folder to build and serve your component.\n'));
   }
 });
