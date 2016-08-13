@@ -4,6 +4,7 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 var path = require('path');
 var mkdirp = require('mkdirp');
+var _ = require('lodash-addons');
 
 module.exports = yeoman.Base.extend({
   prompting: function() {
@@ -13,16 +14,17 @@ module.exports = yeoman.Base.extend({
       type: 'input',
       name: 'name',
       required: true,
-      message: 'Tag name of the element and directory to generate.',
+      message: 'Component\'s name',
+      default: _.slugify(this.appname),
       validate: function(str) { return /^([a-z])(?!.*[<>])(?=.*-).+$/.test(str); }
     }, {
       type: 'input',
       name: 'description',
-      message: 'Component\'s short description',
+      message: 'Short description',
       default: 'An element providing a solution to no problem in particular.'
     }];
 
-    return this.prompt(prompts).then(function (props) {
+    return this.prompt(prompts).then(function(props) {
       this.props = props;
       done();
     }.bind(this));
