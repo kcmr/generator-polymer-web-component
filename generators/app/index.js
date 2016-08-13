@@ -2,7 +2,8 @@
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
-var glob = require('glob');
+var path = require('path');
+var mkdirp = require('mkdirp');
 
 module.exports = yeoman.Base.extend({
   prompting: function() {
@@ -24,6 +25,14 @@ module.exports = yeoman.Base.extend({
       this.props = props;
       done();
     }.bind(this));
+  },
+
+  default: function() {
+    if (path.basename(this.destinationPath()) !== this.props.name) {
+      this.log(chalk.yellow('Creating a folder named ' + this.props.name + ' for you.'));
+      mkdirp(this.props.name);
+      this.destinationRoot(this.destinationPath(this.props.name));
+    }
   },
 
   writing: {
