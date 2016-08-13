@@ -7,6 +7,14 @@ var _ = require('lodash-addons');
 var elementNameValidator = require('validate-element-name');
 
 module.exports = yeoman.Base.extend({
+  constructor: function () {
+    yeoman.Base.apply(this, arguments);
+
+    this.option('debug', {
+      desc: 'Run generator in debug mode without installing dependencies',
+      defaults: false
+    });
+  },
   prompting: function() {
     var done = this.async();
 
@@ -92,10 +100,7 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function() {
-    // TODO: remove npm: false
-    this.installDependencies({
-      npm: false
-    });
+    !this.options.debug && this.installDependencies();
   },
 
   end: function() {
