@@ -20,6 +20,7 @@
     </test-fixture>
 
     <script>
+<% if (props.unitTestingStyle === 'tdd') { -%>
       suite('<<%= props.name %>>', function() {
         var el;
 
@@ -27,10 +28,23 @@
           el = fixture('default');
         });
 
-        test('is okay', function() {
+        test('is ok', function() {
           assert.isOk(el);
         });
       });
+<% } else { -%>
+      describe('<<%= props.name %>>', function() {
+        var el;
+
+        before(function() {
+          el = fixture('default');
+        });
+
+        it('is ok', function() {
+          expect(el).to.be.ok;
+        });
+      });
+<% } -%>
     </script>
 
   </body>

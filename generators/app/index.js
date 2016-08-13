@@ -37,6 +37,17 @@ module.exports = yeoman.Base.extend({
       name: 'description',
       message: 'Short description',
       default: 'An element providing a solution to no problem in particular.'
+    }, {
+      type: 'list',
+      name: 'unitTestingStyle',
+      message: 'Choose a style for unit tests',
+      choices: [{
+        value: 'tdd',
+        name: 'TDD (suite, test, assert)'
+      }, {
+        value: 'bdd',
+        name: 'BDD (describe, it, expect)'
+      }]
     }];
 
     return this.prompt(prompts).then(function(props) {
