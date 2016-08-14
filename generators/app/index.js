@@ -18,6 +18,7 @@ module.exports = yeoman.Base.extend({
   prompting: function() {
     var done = this.async();
 
+    /* istanbul ignore next */
     var nameValidator = function(str) {
       var result = elementNameValidator(str);
 
