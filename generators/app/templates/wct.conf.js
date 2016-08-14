@@ -9,7 +9,7 @@ var config = {
       browsers: ['chrome']
     },
     istanbul: {
-      dir: "./coverage-reports",
+      dir: "./coverage",
       reporters: [
         "text",
         "text-summary",
