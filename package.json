@@ -15,6 +15,9 @@
     "gulp",
     "yeoman-generator"
   ],
+  "engines": {
+    "node": ">=4.0.0"
+  },
   "dependencies": {
     "chalk": "^1.0.0",
     "lodash-addons": "^0.3.1",
@@ -23,7 +26,6 @@
   },
   "devDependencies": {
     "eslint": "^3.1.1",
-    "eslint-config-xo-space": "^0.14.0",
     "gulp": "^3.9.0",
     "gulp-eslint": "^3.0.1",
     "gulp-exclude-gitignore": "^1.0.0",
