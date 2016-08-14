@@ -2,26 +2,7 @@
   "extends": "eslint:recommended",
   "env": {
     "node": true,
-    "mocha": true,
-    "browser": true
-  },
-  "globals": {
-    "assert": false,
-    "page": false,
-    "Platform": false,
-    "Polymer": false,
-    "Promise": false,
-    "suite": false,
-    "suiteSetup": false,
-    "flush": false,
-    "expect": false,
-    "test": false,
-    "unwrap": false,
-    "WCT": false,
-    "wrap": false,
-    "suiteTeardown": false,
-    "setup": false,
-    "teardown": false
+    "mocha": true
   },
   "rules": {
     "semi": [
@@ -152,17 +133,6 @@
         "properties": "never"
       }
     ],
-    "new-cap": [
-      2,
-      {
-        "capIsNewExceptions": [
-          "Platform",
-          "Polymer",
-          "Promise",
-          "WCT"
-        ]
-      }
-    ],
     "dot-notation": 2,
     "keyword-spacing": [
       2,
@@ -211,10 +181,6 @@
         "beforeLineComment": true,
         "allowBlockStart": true
       }
-    ],
-    "consistent-this": [
-      2,
-      "_this"
     ],
     "quotes": [
       2,

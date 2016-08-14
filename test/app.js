@@ -3,9 +3,9 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 
-describe('generator-polymer-web-component:app', function () {
+describe('generator-polymer-web-component:app', function() {
   context('using valid name for web component', function() {
-    before(function (done) {
+    before(function(done) {
       helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts({
           name: 'component-name'
@@ -13,7 +13,7 @@ describe('generator-polymer-web-component:app', function () {
         .on('end', done);
     });
 
-    it('creates expected files', function () {
+    it('creates expected files', function() {
       assert.file([
         '.editorconfig',
         '.eslintrc',

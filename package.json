@@ -35,12 +35,6 @@
     "yeoman-assert": "^2.0.0",
     "yeoman-test": "^1.0.0"
   },
-  "eslintConfig": {
-    "extends": "xo-space",
-    "env": {
-      "mocha": true
-    }
-  },
   "repository": "kcmr/generator-polymer-web-component",
   "scripts": {
     "prepublish": "gulp prepublish",

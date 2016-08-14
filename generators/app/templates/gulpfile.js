@@ -46,7 +46,7 @@ gulp.task('build', function() {
       minifyJS: true
     }))
 
-    .pipe(gulp.dest('.'))
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('browserSync', function() {

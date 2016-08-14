@@ -7,7 +7,7 @@ var _ = require('lodash-addons');
 var elementNameValidator = require('validate-element-name');
 
 module.exports = yeoman.Base.extend({
-  constructor: function () {
+  constructor: function() {
     yeoman.Base.apply(this, arguments);
 
     this.option('debug', {
@@ -100,7 +100,9 @@ module.exports = yeoman.Base.extend({
   },
 
   install: function() {
-    !this.options.debug && this.installDependencies();
+    if (!this.options.debug) {
+      this.installDependencies();
+    }
   },
 
   end: function() {

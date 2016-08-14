@@ -9,16 +9,16 @@ var config = {
       browsers: ['chrome']
     },
     istanbul: {
-      dir: "./coverage",
+      dir: './coverage',
       reporters: [
-        "text",
-        "text-summary",
-        "lcov",
-        "json"
+        'text',
+        'text-summary',
+        'lcov',
+        'json'
       ],
       include: [
-        "/*.js",
-        "/*.html"
+        '/*.js',
+        '/*.html'
       ],
       exclude: [
       ],
