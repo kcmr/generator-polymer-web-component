@@ -29,7 +29,6 @@ describe('generator-polymer-web-component:app', function () {
         'src/component-name.html',
         'src/component-name.js',
         'src/component-name.css',
-        'src/component-name-styles.html',
         'test/index.html',
         'test/component-name-test.html'
       ]);

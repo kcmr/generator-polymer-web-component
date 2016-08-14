@@ -1,5 +1,4 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="<%= props.name %>-styles.html">
 
 <!--
 <%= props.description %>
@@ -24,7 +23,7 @@ Custom property | Description | Default
 
 <dom-module id="<%= props.name %>">
   <template>
-    <style include="<%= props.name %>-styles <%= props.name %>-shared-styles"></style>
+    <link rel="stylesheet" href="./<%= props.name %>.css" inline>
     <content></content>
   </template>
   <script src="<%= props.name %>.js" inline></script>
