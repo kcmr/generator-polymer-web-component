@@ -1,22 +1,23 @@
 'use strict';
 
-const yeoman = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const _ = require('lodash-addons');
 const elementNameValidator = require('validate-element-name');
 
-module.exports = yeoman.Base.extend({
-  constructor: function() {
-    yeoman.Base.apply(this, arguments);
+module.exports = class extends Generator {
+  constructor(args, opts) {
+    super(args, opts);
 
     this.option('debug', {
       desc: 'Run generator in debug mode without installing dependencies',
       defaults: false
     });
-  },
-  prompting: function() {
+  }
+
+  prompting() {
     let done = this.async();
 
     /* istanbul ignore next */
@@ -63,50 +64,49 @@ module.exports = yeoman.Base.extend({
       this.props = props;
       done();
     }.bind(this));
-  },
+  }
 
-  default: function() {
+  default() {
     if (path.basename(this.destinationPath()) !== this.props.name) {
       this.log(chalk.yellow(`Creating a folder named ${this.props.name} for you.`));
       mkdirp(this.props.name);
       this.destinationRoot(this.destinationPath(this.props.name));
     }
-  },
+  }
 
-  writing: {
-    src: function() {
-      this.fs.copyTpl(this.templatePath('src/component.html'), this.destinationPath(`src/${this.props.name}.html`), this);
-      this.fs.copyTpl(this.templatePath('src/component.js'), this.destinationPath(`src/${this.props.name}.js`), this);
-      this.fs.copyTpl(this.templatePath('src/component.css'), this.destinationPath(`src/${this.props.name}.css`), this);
-    },
-    test: function() {
-      this.fs.copyTpl(this.templatePath('test/component-test.html'), this.destinationPath(`test/${this.props.name}-test.html`), this);
-      this.fs.copyTpl(this.templatePath('test/index.html'), this.destinationPath('test/index.html'), this);
-    },
-    demo: function() {
-      this.fs.copyTpl(this.templatePath('demo/index.html'), this.destinationPath('demo/index.html'), this);
-    },
-    component: function() {
-      this.fs.copyTpl(this.templatePath('index.html'), this.destinationPath('index.html'), this);
-      this.fs.copyTpl(this.templatePath('bower.json'), this.destinationPath('bower.json'), this);
-      this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), this);
+  writing() {
+    // src
+    this.fs.copyTpl(this.templatePath('src/component.html'), this.destinationPath(`src/${this.props.name}.html`), this);
+    this.fs.copyTpl(this.templatePath('src/component.js'), this.destinationPath(`src/${this.props.name}.js`), this);
+    this.fs.copyTpl(this.templatePath('src/component.css'), this.destinationPath(`src/${this.props.name}.css`), this);
 
-      this.fs.copy([
-        this.templatePath() + '/**/.*',
-        this.templatePath('gulpfile.js'),
-        this.templatePath('package.json'),
-        this.templatePath('wct.conf.js')
-      ], this.destinationPath());
-    }
-  },
+    // test
+    this.fs.copyTpl(this.templatePath('test/component-test.html'), this.destinationPath(`test/${this.props.name}-test.html`), this);
+    this.fs.copyTpl(this.templatePath('test/index.html'), this.destinationPath('test/index.html'), this);
 
-  install: function() {
+    // demo
+    this.fs.copyTpl(this.templatePath('demo/index.html'), this.destinationPath('demo/index.html'), this);
+
+    //component
+    this.fs.copyTpl(this.templatePath('index.html'), this.destinationPath('index.html'), this);
+    this.fs.copyTpl(this.templatePath('bower.json'), this.destinationPath('bower.json'), this);
+    this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), this);
+
+    this.fs.copy([
+      this.templatePath() + '/**/.*',
+      this.templatePath('gulpfile.js'),
+      this.templatePath('package.json'),
+      this.templatePath('wct.conf.js')
+    ], this.destinationPath());
+  }
+
+  install() {
     if (!this.options.debug) {
       this.installDependencies();
     }
-  },
+  }
 
-  end: function() {
+  end() {
     this.log(chalk.cyan(`\nAll done!.\nRun gulp inside ${this.props.name} folder to build and serve your component.\n`));
   }
-});
+};
