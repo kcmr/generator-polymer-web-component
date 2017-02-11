@@ -1,10 +1,11 @@
 'use strict';
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
-var path = require('path');
-var mkdirp = require('mkdirp');
-var _ = require('lodash-addons');
-var elementNameValidator = require('validate-element-name');
+
+const yeoman = require('yeoman-generator');
+const chalk = require('chalk');
+const path = require('path');
+const mkdirp = require('mkdirp');
+const _ = require('lodash-addons');
+const elementNameValidator = require('validate-element-name');
 
 module.exports = yeoman.Base.extend({
   constructor: function() {
@@ -16,11 +17,11 @@ module.exports = yeoman.Base.extend({
     });
   },
   prompting: function() {
-    var done = this.async();
+    let done = this.async();
 
     /* istanbul ignore next */
-    var nameValidator = function(str) {
-      var result = elementNameValidator(str);
+    const nameValidator = function(str) {
+      let result = elementNameValidator(str);
 
       if (!result.isValid) {
         this.emit('error', new Error(chalk.red(result.message)));
@@ -33,7 +34,7 @@ module.exports = yeoman.Base.extend({
       return true;
     }.bind(this);
 
-    var prompts = [{
+    const prompts = [{
       type: 'input',
       name: 'name',
       required: true,
@@ -66,7 +67,7 @@ module.exports = yeoman.Base.extend({
 
   default: function() {
     if (path.basename(this.destinationPath()) !== this.props.name) {
-      this.log(chalk.yellow('Creating a folder named ' + this.props.name + ' for you.'));
+      this.log(chalk.yellow(`Creating a folder named ${this.props.name} for you.`));
       mkdirp(this.props.name);
       this.destinationRoot(this.destinationPath(this.props.name));
     }
@@ -74,12 +75,12 @@ module.exports = yeoman.Base.extend({
 
   writing: {
     src: function() {
-      this.fs.copyTpl(this.templatePath('src/component.html'), this.destinationPath('src/' + this.props.name + '.html'), this);
-      this.fs.copyTpl(this.templatePath('src/component.js'), this.destinationPath('src/' + this.props.name + '.js'), this);
-      this.fs.copyTpl(this.templatePath('src/component.css'), this.destinationPath('src/' + this.props.name + '.css'), this);
+      this.fs.copyTpl(this.templatePath('src/component.html'), this.destinationPath(`src/${this.props.name}.html`), this);
+      this.fs.copyTpl(this.templatePath('src/component.js'), this.destinationPath(`src/${this.props.name}.js`), this);
+      this.fs.copyTpl(this.templatePath('src/component.css'), this.destinationPath(`src/${this.props.name}.css`), this);
     },
     test: function() {
-      this.fs.copyTpl(this.templatePath('test/component-test.html'), this.destinationPath('test/' + this.props.name + '-test.html'), this);
+      this.fs.copyTpl(this.templatePath('test/component-test.html'), this.destinationPath(`test/${this.props.name}-test.html`), this);
       this.fs.copyTpl(this.templatePath('test/index.html'), this.destinationPath('test/index.html'), this);
     },
     demo: function() {
@@ -106,6 +107,6 @@ module.exports = yeoman.Base.extend({
   },
 
   end: function() {
-    this.log(chalk.cyan('\nAll done!.\nRun gulp inside ' + this.props.name + ' folder to build and serve your component.\n'));
+    this.log(chalk.cyan(`\nAll done!.\nRun gulp inside ${this.props.name} folder to build and serve your component.\n`));
   }
 });

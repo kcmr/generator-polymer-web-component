@@ -1,16 +1,18 @@
-var gulp = require('gulp');
-var browserSync = require('browser-sync');
-var postcss = require('gulp-postcss');
-var processInline = require('gulp-process-inline');
-var inlineSource = require('gulp-inline-source');
-var htmlmin = require('gulp-htmlmin');
-var eslint = require('gulp-eslint');
-var autoprefixer = require('autoprefixer');
-var minify = require('gulp-htmlmin');
+'use strict';
 
-gulp.task('build', function() {
-  var styles = processInline();
-  var scripts = processInline();
+const gulp = require('gulp');
+const browserSync = require('browser-sync');
+const postcss = require('gulp-postcss');
+const processInline = require('gulp-process-inline');
+const inlineSource = require('gulp-inline-source');
+const htmlmin = require('gulp-htmlmin');
+const eslint = require('gulp-eslint');
+const autoprefixer = require('autoprefixer');
+const minify = require('gulp-htmlmin');
+
+gulp.task('build', () => {
+  let styles = processInline();
+  let scripts = processInline();
 
   return gulp.src(['src/*.html'])
     .pipe(inlineSource({
@@ -49,7 +51,7 @@ gulp.task('build', function() {
     .pipe(gulp.dest('.'));
 });
 
-gulp.task('browserSync', function() {
+gulp.task('browserSync', () => {
   browserSync({
     server: {
       baseDir: './',
@@ -64,7 +66,7 @@ gulp.task('browserSync', function() {
   });
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', () => {
   gulp.watch(['src/**/*', 'demo/**/*', 'test/**/*'], ['build', browserSync.reload]);
 });
 
