@@ -6,12 +6,12 @@ const helpers = require('yeoman-test');
 
 describe('generator-polymer-web-component:app', () => {
   context('using valid name for web component', () => {
-    before(done => {
-      helpers.run(path.join(__dirname, '../generators/app'))
+    before(() => {
+      return helpers.run(path.join(__dirname, '../generators/app'))
         .withPrompts({
           name: 'component-name'
         })
-        .on('end', done);
+        .toPromise();
     });
 
     it('creates expected files', () => {
