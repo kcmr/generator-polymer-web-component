@@ -11,7 +11,7 @@ const plumber = require('gulp-plumber');
 
 gulp.task('static', () => gulp.src('**/*.js')
   .pipe(excludeGitignore())
-  .pipe(eslint())
+  .pipe(eslint({ configFile: '.eslintrc'}))
   .pipe(eslint.format())
   .pipe(eslint.failAfterError())
 );
