@@ -24,6 +24,8 @@ By default, the component's name will be the folder where you execute the comman
 
 Run `gulp` inside your component to build the minified version and serve the component's demo.
 
+Note: the source files are located inside the `src` folder.
+
 ```bash
 $ cd <component-path> && gulp
 ```
