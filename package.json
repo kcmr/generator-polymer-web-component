@@ -5,7 +5,7 @@
   "homepage": "https://github.com/kcmr/generator-polymer-web-component",
   "author": "Kus Cámara",
   "files": [
-    "app"
+    "generators"
   ],
   "main": "generators/app/index.js",
   "keywords": [
