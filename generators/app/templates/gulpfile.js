@@ -9,10 +9,14 @@ const htmlmin = require('gulp-htmlmin');
 const eslint = require('gulp-eslint');
 const autoprefixer = require('autoprefixer');
 const minify = require('gulp-htmlmin');
+const argv = require('yargs').argv;
+const gulpif = require('gulp-if');
+const prettify = require('gulp-html-prettify');
 
 gulp.task('build', () => {
-  let styles = processInline();
-  let scripts = processInline();
+  const styles = processInline();
+  const scripts = processInline();
+  const noMinify = argv.minify === false;
 
   return gulp.src(['src/*.html'])
     .pipe(inlineSource({
@@ -36,7 +40,7 @@ gulp.task('build', () => {
     .pipe(styles.restore())
 
     // HTML
-    .pipe(minify({
+    .pipe(gulpif(!noMinify, minify({
       removeComments: true,
       removeCommentsFromCDATA: true,
       collapseWhitespace: true,
@@ -46,7 +50,12 @@ gulp.task('build', () => {
       customAttrAssign: [/\$=/],
       minifyCSS: true,
       minifyJS: true
-    }))
+    })))
+
+    .pipe(gulpif(noMinify, prettify({
+      indent_char: ' ',
+      indent_size: 2
+    })))
 
     .pipe(gulp.dest('.'));
 });
@@ -71,4 +80,3 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', ['build', 'browserSync', 'watch']);
-

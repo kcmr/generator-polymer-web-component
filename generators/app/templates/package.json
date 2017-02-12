@@ -10,8 +10,11 @@
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-htmlmin": "^2.0.0",
+    "gulp-if": "^2.0.2",
     "gulp-inline-source": "^2.1.0",
     "gulp-postcss": "^6.1.1",
-    "gulp-process-inline": "^0.1.4"
+    "gulp-process-inline": "^0.1.4",
+    "yargs": "^6.6.0",
+    "gulp-html-prettify": "0.0.1"
   }
 }
